@@ -100,8 +100,8 @@ if __name__ == '__main__':
 
                     base_array = base_band.ReadAsArray(
                         xoff=int(base_i), yoff=int(base_j),
-                        win_xsize=int(base_i_p1-base_i),
-                        win_ysize=int(base_j_p1-base_j))
+                        win_xsize=win_xsize,
+                        win_ysize=win_ysize)
 
                     masked_array = base_array[
                         ~numpy.isclose(base_array, nodata)]
