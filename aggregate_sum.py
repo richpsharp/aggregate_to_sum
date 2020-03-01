@@ -80,14 +80,14 @@ if __name__ == '__main__':
                         base_inv_gt, target_x, target_y)
 
                     target_x_p1, target_y_p1 = gdal.ApplyGeoTransform(
-                        target_gt, target_i, target_j)
+                        target_gt, target_i+1, target_j+1)
                     base_i_p1, base_j_p1 = gdal.ApplyGeoTransform(
                         base_inv_gt, target_x_p1, target_y_p1)
 
                     LOGGER.debug('%d %d %d %d', base_i, base_j, base_i_p1, base_j_p1)
 
                     base_array = base_band.ReadAsArray(
-                        xoff=base_i, yoff=base_j,
+                        xoff=int(base_i), yoff=int(base_j),
                         win_xsize=int(base_i_p1-base_i),
                         win_ysize=int(base_j_p1-base_j))
 
