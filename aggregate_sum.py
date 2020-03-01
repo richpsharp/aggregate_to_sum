@@ -31,10 +31,12 @@ if __name__ == '__main__':
 
     gtiff_driver = gdal.GetDriverByName('GTiff')
 
+    LOGGER.debug('filepath: %s', args.filepath)
     for glob_pattern in args.filepath:
         for file_path in glob.glob(glob_pattern):
             target_path = (
                 'sum_aggregate_to_%f_%s' % os.path.basename(file_path))
+            LOGGER.debug('making %s', target_path)
             LOGGER.debug(file_path)
             base_info = pygeoprocessing.get_raster_info(file_path)
             base_cols, base_rows = base_info['raster_size']
