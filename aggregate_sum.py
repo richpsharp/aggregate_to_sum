@@ -91,10 +91,10 @@ if __name__ == '__main__':
 
                     if win_xsize + base_i >= n_cols:
                         win_xsize = n_cols-base_i
-                    if win_ysize + base_j > n_rows:
+                    if win_ysize + base_j >= n_rows:
                         win_ysize = n_rows-base_j
                     LOGGER.debug(
-                        '%d %d %d %d', base_i, base_j, win_xsize, win_ysize)
+                        '%d %d, %d %d %d %d', n_cols, n_rows, base_i, base_j, win_xsize, win_ysize)
 
                     base_array = base_band.ReadAsArray(
                         xoff=int(base_i), yoff=int(base_j),
