@@ -33,6 +33,7 @@ if __name__ == '__main__':
 
     LOGGER.debug('filepath: %s', args.filepath)
     for glob_pattern in args.filepath:
+        LOGGER.debug(glob_pattern)
         for file_path in glob.glob(glob_pattern):
             target_path = (
                 'sum_aggregate_to_%f_%s' % os.path.basename(file_path))
