@@ -65,7 +65,10 @@ if __name__ == '__main__':
                     'TILED=YES', 'BIGTIFF=YES', 'COMPRESS=LZW',
                     'BLOCKXSIZE=256', 'BLOCKYSIZE=256'))
             target_band = target_raster.GetRasterBand(1)
+            target_band.SetNoDataValue(nodata)
             target_band.Fill(nodata)
+            target_raster.SetProjection(base_info['projection'])
+            target_raster.SetGeoTransform(target_gt)
 
             for target_i in range(n_cols):
                 LOGGER.debug(
@@ -80,6 +83,8 @@ if __name__ == '__main__':
                         target_gt, target_i, target_j)
                     base_i_p1, base_j_p1 = gdal.ApplyGeoTransform(
                         base_inv_gt, target_x_p1, target_y_p1)
+
+                    LOGGER.debug('%d %d %d %d', base_i, base_j, base_i_p1, base_j_p1)
 
                     base_array = base_band.ReadAsArray(
                         xoff=base_i, yoff=base_j,
