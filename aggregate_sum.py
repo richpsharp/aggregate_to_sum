@@ -90,7 +90,8 @@ if __name__ == '__main__':
                     win_ysize = int(base_j_p1-base_j)
 
                     LOGGER.debug(
-                        'B: %d %d, %d %d %d %d', base_cols, base_rows, base_i, base_j, win_xsize, win_ysize)if win_xsize + base_i >= base_rows:
+                        'B: %d %d, %d %d %d %d', base_cols, base_rows, base_i, base_j, win_xsize, win_ysize)
+                    if win_xsize + base_i >= base_rows:
                         win_xsize = base_rows-base_i
                     if win_ysize + base_j >= base_cols:
                         win_ysize = base_cols-base_j
