@@ -86,7 +86,7 @@ if __name__ == '__main__':
                         int(x) for x in gdal.ApplyGeoTransform(
                             base_inv_gt, target_x_p1, target_y_p1)]
 
-                    win_xsize = int(base_i_p1-base_i),
+                    win_xsize = int(base_i_p1-base_i)
                     win_ysize = int(base_j_p1-base_j)
 
                     if win_xsize + base_i >= n_cols:
