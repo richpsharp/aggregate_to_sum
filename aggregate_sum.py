@@ -46,7 +46,7 @@ if __name__ == '__main__':
             base_gt = base_info['geotransform']
             target_gt = [
                 base_gt[0], float(args.target_size), 0,
-                base_gt[1], 0, -float(args.target_size)]
+                base_gt[3], 0, -float(args.target_size)]
 
             base_inv_gt = gdal.InvGeoTransform(base_gt)
             target_inv_gt = gdal.InvGeoTransform(target_gt)
