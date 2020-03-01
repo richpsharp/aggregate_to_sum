@@ -105,5 +105,7 @@ if __name__ == '__main__':
                         ~numpy.isclose(base_array, nodata)]
 
                     if masked_array.size > 1:
+                        array_sum = numpy.sum(masked_array)
+                        LOGGER.debug(array_sum)
                         target_band.WriteArray(
-                            [[numpy.sum(masked_array)]], target_i, target_j)
+                            [[array_sum]], target_i, target_j)
