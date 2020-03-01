@@ -76,15 +76,25 @@ if __name__ == '__main__':
                 for target_j in range(n_rows):
                     target_x, target_y = gdal.ApplyGeoTransform(
                         target_gt, target_i, target_j)
-                    base_i, base_j = gdal.ApplyGeoTransform(
-                        base_inv_gt, target_x, target_y)
+                    base_i, base_j = [
+                        int(x) for x in gdal.ApplyGeoTransform(
+                            base_inv_gt, target_x, target_y)]
 
                     target_x_p1, target_y_p1 = gdal.ApplyGeoTransform(
                         target_gt, target_i+1, target_j+1)
-                    base_i_p1, base_j_p1 = gdal.ApplyGeoTransform(
-                        base_inv_gt, target_x_p1, target_y_p1)
+                    base_i_p1, base_j_p1 = [
+                        int(x) for x in gdal.ApplyGeoTransform(
+                            base_inv_gt, target_x_p1, target_y_p1)]
 
-                    LOGGER.debug('%d %d %d %d', base_i, base_j, base_i_p1, base_j_p1)
+                    win_xsize = int(base_i_p1-base_i),
+                    win_ysize = int(base_j_p1-base_j)
+
+                    if win_xsize + base_i >= n_cols:
+                        win_xsize = n_cols-base_i
+                    if win_ysize + base_j > n_rows:
+                        win_ysize = n_rows-base_j
+                    LOGGER.debug(
+                        '%d %d %d %d', base_i, base_j, win_xsize, win_ysize)
 
                     base_array = base_band.ReadAsArray(
                         xoff=int(base_i), yoff=int(base_j),
