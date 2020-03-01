@@ -95,6 +95,12 @@ if __name__ == '__main__':
                         win_xsize = base_cols-base_i
                     if win_ysize + base_j >= base_rows:
                         win_ysize = base_rows-base_j
+
+                    # can happe because of roundoff
+                    if win_xsize < 0:
+                        continue
+                    if win_ysize < 0:
+                        continue
                     LOGGER.debug(
                         'A: %d %d, %d %d %d %d', base_cols, base_rows, base_i, base_j, win_xsize, win_ysize)
 
