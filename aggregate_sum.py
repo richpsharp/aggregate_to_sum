@@ -23,7 +23,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Aggregate by sum.')
     parser.add_argument(
         'target_size', help=(
-            "target pixel size in degrees"), nargs=1)
+            "target pixel size in degrees"), nargs=1, type=float)
     parser.add_argument(
         'filepath', nargs='+', help='Files/patterns to ecoshard.')
 
@@ -36,7 +36,8 @@ if __name__ == '__main__':
         LOGGER.debug(glob_pattern)
         for file_path in glob.glob(glob_pattern):
             target_path = (
-                'sum_aggregate_to_%f_%s' % os.path.basename(file_path))
+                'sum_aggregate_to_%f_%s' % (
+                    args.target_size, os.path.basename(file_path)))
             LOGGER.debug('making %s', target_path)
             LOGGER.debug(file_path)
             base_info = pygeoprocessing.get_raster_info(file_path)
