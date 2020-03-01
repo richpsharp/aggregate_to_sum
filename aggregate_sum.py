@@ -23,7 +23,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Aggregate by sum.')
     parser.add_argument(
         'target_size', help=(
-            "target pixel size in degrees"), nargs=1, type=float)
+            "target pixel size in degrees"), type=float)
     parser.add_argument(
         'filepath', nargs='+', help='Files/patterns to ecoshard.')
 
