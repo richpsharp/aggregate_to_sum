@@ -37,15 +37,15 @@ if __name__ == '__main__':
         for file_path in glob.glob(glob_pattern):
             target_path = (
                 'sum_aggregate_to_%f_%s' % (
-                    args.target_size, os.path.basename(file_path)))
+                    float(args.target_size), os.path.basename(file_path)))
             LOGGER.debug('making %s', target_path)
             LOGGER.debug(file_path)
             base_info = pygeoprocessing.get_raster_info(file_path)
             base_cols, base_rows = base_info['raster_size']
             base_gt = base_info['geotransform']
             target_gt = [
-                base_gt[0], args.target_size, 0,
-                base_gt[1], 0, -args.target_size]
+                base_gt[0], float(args.target_size), 0,
+                base_gt[1], 0, -float(args.target_size)]
 
             base_inv_gt = gdal.InvGeoTransform(base_gt)
             target_inv_gt = gdal.InvGeoTransform(target_gt)
