@@ -12,7 +12,7 @@ import pygeoprocessing
 LOGGER = logging.getLogger(__name__)
 
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format=('%(message)s'),
     stream=sys.stdout)
 logging.getLogger('ecoshard').setLevel(logging.INFO)
@@ -39,7 +39,7 @@ if __name__ == '__main__':
             target_path = (
                 'sum_aggregate_to_%f_%s' % (
                     float(args.target_size), os.path.basename(file_path)))
-            LOGGER.debug('making %s', target_path)
+            LOGGER.info('making %s', target_path)
             LOGGER.debug(file_path)
             base_info = pygeoprocessing.get_raster_info(file_path)
             base_cols, base_rows = base_info['raster_size']
@@ -71,7 +71,7 @@ if __name__ == '__main__':
             target_raster.SetGeoTransform(target_gt)
 
             for target_i in range(n_cols):
-                LOGGER.debug(
+                LOGGER.info(
                     '%.2f%% complete for %s', target_i/n_cols*100, target_path)
                 for target_j in range(n_rows):
                     target_x, target_y = gdal.ApplyGeoTransform(
