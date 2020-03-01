@@ -35,6 +35,7 @@ if __name__ == '__main__':
     for glob_pattern in args.filepath:
         LOGGER.debug(glob_pattern)
         for file_path in glob.glob(glob_pattern):
+            LOGGER.debug(args.target_size)
             target_path = (
                 'sum_aggregate_to_%f_%s' % (
                     float(args.target_size), os.path.basename(file_path)))
